@@ -20,11 +20,33 @@ angular.module('poc.common.formdisplay')
             }
         };
     })
-    .controller('FormFieldDirectiveController', ['$rootScope', '$scope', 'observationsService', function ($rootScope, 
+    .controller('FormFieldDirectiveController', ['$http', '$rootScope', '$scope', 'observationsService', function ($http, $rootScope, 
         $scope, observationsService) {
             
         var formLogic = {};
         
+        var fireHideEvent = function (event) {
+             $scope.$watch('aForm.' + $scope.fieldId + '.$viewValue', function (newVal, oldVal) {
+                     if (newVal !== oldVal && !_.isUndefined(oldVal)) {
+                         $rootScope.$broadcast(event, newVal);
+                     }
+                 });
+         };
+
+         var listenHideEvent = function (event) {
+             $scope.$on(event, function (event, val) {
+                     var valJson = JSON.parse(val);
+                     if (valJson.display === "YES") {
+                         $scope.field.hidden = false;
+                         $scope.fieldModel.field.required= true;
+
+                     } else {
+                         $scope.field.hidden = true;
+                         $scope.fieldModel.field.required= false;
+                     }
+                 });
+         };
+
         formLogic.defaultValueIsLastEntry = function (param) {
             observationsService.get($rootScope.patient.uuid, param).success(function (data) {
                 var nonRetired = observationsService.filterRetiredObs(data.results);
@@ -52,6 +74,9 @@ angular.module('poc.common.formdisplay')
             $scope.$watch('$parent.submitted', function (value) {
                 $scope.showMessages = value;
             });
+            $scope.$watch('$parent.submitted', function (value) {
+                $scope.showMessages = value;
+            });
             
             $scope.$watch('aForm.' + $scope.fieldId + '.$valid', function (value) {
                 if (typeof value !== "undefined") {
@@ -62,6 +87,14 @@ angular.module('poc.common.formdisplay')
                 }
             });
             
+            if ($scope.field.fireHideEvent) {
+                fireHideEvent($scope.field.fireHideEvent);
+            }
+
+            if ($scope.field.listenHideEvent) {
+                listenHideEvent($scope.field.listenHideEvent);
+            }
+
             $scope.initFieldModel = function () {
                 $scope.fieldModel = $scope.formParts.form.fields[$scope.fieldUuid];
 
@@ -119,7 +152,7 @@ angular.module('poc.common.formdisplay')
         }
 
 
-        var comuteWHOStage = function(firstField, lastPart, whoStages){
+        var comuteWHOStage = function(firstField, lastPart, whoStages) {
 
             for (var i = 0; i < lastPart; i++) {
 
@@ -144,6 +177,18 @@ angular.module('poc.common.formdisplay')
 
                 });
             }
-        }
+        };
 
-    }]);
+        $scope.getConcepts =  function(request) {
+            if (request.length < 2) return;
+
+            return $http.get(Bahmni.Common.Constants.conceptUrl, 
+                { params: {source: $scope.field.searchBySource, q: request, v: "custom:(uuid,name,display)"}})
+            .then(function(response) {
+              return response.data.results.map(function(concept) {
+                return {'value': concept.name.name, 'concept': concept, uuid: concept.uuid, display: concept.display};
+              });
+            });
+        };
+
+}]);
