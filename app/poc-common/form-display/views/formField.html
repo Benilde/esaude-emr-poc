@@ -79,27 +79,27 @@
                                ng-false-value="undefined"
                                ng-model="fieldModel.value[answer.uuid]"
                                ng-required="{{fieldModel.field.required && !fieldModel.value}}">
-                        </checkbox> {{answer.display}} 
+                        </checkbox> {{answer.display}}
                     </div>
                 </div>
                 <div ng-if="!fieldModel.fieldConcept.selectMultiple">
                     <div ng-if="fieldModel.fieldConcept.concept.answers.length > 3">
-                        <select name="{{fieldId}}" class="form-control" 
-                                ng-model="fieldModel.value" 
+                        <select name="{{fieldId}}" class="form-control"
+                                ng-model="fieldModel.value"
                                 ng-options="answer.display for answer in fieldModel.fieldConcept.concept.answers"
                                 ng-required="{{fieldModel.field.required}}"
                                 ng-disabled="{{field.disabled}}">
                             <option></option>
                         </select>
                     </div>
-                    <div class="bg-info-border border-rouded" 
-                         ng-class="{'bg-error-border': aForm.{{fieldId}}.$invalid && showMessages}" 
+                    <div class="bg-info-border border-rouded"
+                         ng-class="{'bg-error-border': aForm.{{fieldId}}.$invalid && showMessages}"
                         ng-if="fieldModel.fieldConcept.concept.answers.length === 3">
                         <div class="content-border-padding" ng-repeat="answer in fieldModel.fieldConcept.concept.answers">
                             <input type="radio"
                                    id="{{fieldId}}{{answer.uuid}}"
                                    class="radio-lx"
-                                   name="{{fieldId}}" 
+                                   name="{{fieldId}}"
                                    ng-value="{{answer}}"
                                    ng-model="fieldModel.value"
                                    ng-required="{{fieldModel.field.required && !fieldModel.value}}">
@@ -115,22 +115,22 @@
                                ng-model="fieldModel.value"
                                       ng-required="{{fieldModel.field.required}}"></checkbox>
                         </div>
-                        
-                        <div class="bg-info-border border-rouded" 
-                             ng-class="{'bg-error-border': aForm.{{fieldId}}.$invalid && showMessages}" 
+
+                        <div class="bg-info-border border-rouded"
+                             ng-class="{'bg-error-border': aForm.{{fieldId}}.$invalid && showMessages}"
                             ng-if="!isTrueFalseQuestion(fieldModel.fieldConcept.concept.answers)">
                             <div class="content-border-padding" ng-repeat="answer in fieldModel.fieldConcept.concept.answers">
                                 <input
                                        type="radio"
                                        id="{{fieldId}}{{answer.uuid}}"
                                        class="radio-lx"
-                                       name="{{fieldId}}" 
+                                       name="{{fieldId}}"
                                        ng-value="{{answer}}"
                                        ng-model="fieldModel.value"
                                        ng-required="{{fieldModel.field.required && !fieldModel.value}}">
                                 <label for="{{fieldId}}{{answer.uuid}}">{{answer.display}}</label>
                             </div>
-                        </div> 
+                        </div>
 
                 </div>
                 <div ng-if="!field.searchBySource">
