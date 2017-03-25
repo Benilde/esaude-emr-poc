@@ -25,7 +25,11 @@
                 <th>{{'PATIENT_INFO_IDENTIFIER_IDENTIFIER' | translate}}</th>
                 <th>{{'PATIENT_INFO_IDENTIFIER_PREFERRED' | translate}}</th>
               <th></th>
+<<<<<<< HEAD
               <th> Mascara/Formato de Indentificador </th>
+=======
+              <th></th>
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
             </tr>
         </thead>
         <tbody ng-init="listRequiredIdentifiers()">
@@ -33,15 +37,21 @@
                 <td class="col-sm-4 control-label">
                     <div ng-messages for="aForm.{{pi.fieldName}}.$error"
                          ng-messages-include="../poc-common/form-display/views/error-messages.html"
-                         ng-show="showMessages">
+                         ng-show="showMessages" >
                     </div>
                     {{pi.identifierType.display}}
                 </td>
                 <td>
                     <div ng-class="{'has-error': aForm.{{pi.fieldName}}.$invalid && showMessages}">
                         <input type="text" class="form-control input-lg keyboard-in" name="{{pi.fieldName}}"
+<<<<<<< HEAD
                                placeholder="{{pi.identifierType.format}}" ng-model="pi.identifier" ng-pattern="pi.identifierType.format"
+=======
+                               ng-model="pi.identifier"
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                                record-availability-validator="/ws/rest/v1/patient"
+                               ui-mask="{{pi.uimask}}"
+                               ui-mask-placeholder ui-mask-placeholder-char="{{pi.uimaskplaceholderchar}}"
                                required>
 
                     </div>
@@ -56,7 +66,15 @@
                         <span class="glyphicon glyphicon-remove-sign"></span>
                     </button>
                 </td>
+<<<<<<< HEAD
                 <td><label class="alert ">{{pi.identifierType.format}} </label></td>
+=======
+                <td>
+                    <button popover-placement="Top" uib-popover="{{pi.identifierType.formatDescription}}" type="button" class="btn btn-info btn-lg">
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                    </button>
+                </td>
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
 
             </tr>
         </tbody>
@@ -65,7 +83,7 @@
 
 <div class="row bg-info-border content-border border-rouded go-to-right">
     <button type="button" class="btn btn-success btn-lg"
-            ng-click="stepForward('confirm', aForm.$valid)">
+            ng-click="stepForward('name', aForm.$valid)">
         <span class="glyphicon glyphicon glyphicon-step-forward"></span>
     </button>
 </div>

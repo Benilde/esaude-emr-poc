@@ -66,6 +66,10 @@ module.exports = function (config) {
       'bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.min.js',
       'bower_components/select2/select2.min.js',
       'bower_components/angular-ui-select2/src/select2.js',
+<<<<<<< HEAD
+=======
+      'bower_components/angular-ui-mask/dist/mask.js',
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
 
       // endbower
       // bundled libraries
@@ -102,7 +106,7 @@ module.exports = function (config) {
     reporters: ['spec', 'coverage'],
 
     coverageReporter: {
-      type: 'lcov',
+      type: 'html',
       dir: 'coverage/'
     },
 
@@ -128,7 +132,9 @@ module.exports = function (config) {
       'karma-coverage',
       'karma-spec-reporter',
       'karma-json-fixtures-preprocessor',
-      'karma-angular-filesort'
+      'karma-angular-filesort',
+      'karma-chrome-launcher',
+      'karma-jasmine'
     ],
 
     // Continuous Integration mode

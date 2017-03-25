@@ -5,7 +5,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_VISIT_HISTORY' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <div class="list-group" ng-repeat="visit in visits" ng-show="showDivVisit">
+=======
+        <div class="list-group" ng-repeat="visit in visits" ng-hide="showDivVisit">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <div class="bg-info content-border-padding-li">
                     {{'CLINIC_PATIENT_VISIT' | translate}} {{'COMMON_ON' | translate}} {{visit[0].encounterDatetime | date:"MMM d, y"}}
                 </div>
@@ -22,7 +26,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_DIAGNOSIS' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <table class="table" ng-show="showDivDiagnosis">
+=======
+        <table class="table" ng-hide="showDivDiagnosis">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <tbody>
                     <tr ng-repeat="diagn in diagnosis">
                         <td>{{diagn.concept.name.display}}</td>
@@ -38,15 +46,36 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_PRESCRIPTIONS' | translate}}/{{'CLINIC_PATIENT_REGIMENS' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <div class="list-group" ng-repeat="encounter in prescriptions" ng-show="showDivPrescriptions">
+=======
+        <div class="list-group" ng-repeat="presc in prescriptions" ng-hide="showDivPrescriptions">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <div class="bg-info content-border-padding-li">
-                    {{'CLINIC_PATIENT_PRESCRIBED' | translate}} {{'COMMON_ON' | translate}} {{encounter.encounterDatetime | date:"MMM d, y"}}
+                    {{'CLINIC_PATIENT_PRESCRIBED' | translate}} {{'COMMON_ON' | translate}} {{presc.prescriptionDate | date:"MMM d, y"}}
                 </div>
+<<<<<<< HEAD
                 <div ng-repeat="obs in encounter.obs">
                     <div class="list-group-item">
                       {{obs.concept.name.display}}:
                         <span class="badge">{{isObject(obs.value) ? obs.value.display : obs.value}}</span>
                     </div>
+=======
+                <div class="list-group-item" ng-repeat="model in presc.models">
+                    <span class="text-lg"><strong>{{(model.arvDrugs.value) ? model.arvDrugs.value.display: model.otherDrugs.value.display}}</strong> {{model.dosageAmount.value}}
+                        {{model.dosingUnits.value.display}}, {{model.dosgeFrequency.value.display}},
+                        {{model.drugRoute.value.display}} - {{model.duration.value}}
+                        {{model.durationUnits.value.display}} ({{model.dosingInstructions.value.display}})</span>
+                    <span ng-if="model.artPlan.value">
+                        <strong>{{'CLINIC_PRESCRIPTION_ARV_PLAN'| translate}}:</strong> {{model.artPlan.value.display}}
+                    </span>
+                    <span ng-if="model.interruptedReason.value">
+                        <strong> {{'CLINIC_PRESCRIPTION_ARV_PLAN_INTERRUPDED_FOR'| translate}}:</strong> {{model.interruptedReason.value.display}}
+                    </span>
+                    <span ng-if="model.changeReason.value">
+                        <strong>{{'CLINIC_PRESCRIPTION_ARV_CHANGE_FOR'| translate}}:</strong> {{model.changeReason.value.display}}
+                    </span>
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 </div>
             </div>
         </div>
@@ -56,7 +85,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_VITALS' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <div class="list-group" ng-repeat="encounter in vitals" ng-show="showDivVitals">
+=======
+        <div class="list-group" ng-repeat="encounter in vitals" ng-hide="showDivVitals">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <div class="bg-info content-border-padding-li">
                     {{'CLINIC_PATIENT_CAPTURED' | translate}} {{'COMMON_ON' | translate}} {{encounter.encounterDatetime | date:"MMM d, y"}}
                 </div>
@@ -75,7 +108,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_LAB' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <div class="list-group" ng-repeat="visit in labs" ng-show="showDivLAB">
+=======
+        <div class="list-group" ng-repeat="visit in labs" ng-hide="showDivLAB">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <div class="bg-info content-border-padding-li">
                     {{'CLINIC_PATIENT_COLLECTED' | translate}} {{'COMMON_ON' | translate}} {{visit[0].encounterDatetime | date:"MMM d, y"}}
                 </div>
@@ -105,7 +142,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_PHARMACY' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <div class="list-group" ng-repeat="visit in pickups" ng-show="showDivPharmacy">
+=======
+        <div class="list-group" ng-repeat="visit in pickups" ng-hide="showDivPharmacy">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <div class="bg-info content-border-padding-li">
                     {{'CLINIC_PATIENT_DISPENSED' | translate}} {{'COMMON_ON' | translate}} {{visit[0].encounterDatetime | date:"MMM d, y"}}
                 </div>
@@ -123,7 +164,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{'CLINIC_PATIENT_ALLERGIES' | translate}}/{{'CLINIC_PATIENT_SIDE_EFFECTS' | translate}}</h3>
             </div>
+<<<<<<< HEAD
         <div class="list-group" ng-repeat="encounter in allergies" ng-show="showDivAllergies">
+=======
+        <div class="list-group" ng-repeat="encounter in allergies" ng-hide="showDivAllergies">
+>>>>>>> e1620b201cc7ef8b73ba9d5268443d9eaa3c6a6d
                 <div class="bg-info content-border-padding-li">
                     {{'CLINIC_PATIENT_DIAGNOSED' | translate}} {{'COMMON_ON' | translate}} {{encounter.encounterDatetime | date:"MMM d, y"}}
                 </div>

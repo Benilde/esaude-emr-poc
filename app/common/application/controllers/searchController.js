@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('application')
-        .controller('SearchController', ['$rootScope', '$scope', '$location', 'patientService', 'openmrsPatientMapper', 
+        .controller('SearchController', ['$rootScope', '$scope', '$location', 'patientService', 'openmrsPatientMapper',
             'spinner', 'observationsService', 'commonService',
     function ($rootScope, $scope, $location, patientService, patientMapper, spinner, observationsService, commonService) {
             $scope.results = [];
@@ -57,16 +57,16 @@ angular.module('application')
             };
 
             $scope.linkPatientNew = function() {
-                $location.url("/patient/new/name"); // path not hash
+                $location.url("/patient/new/identifier"); // path not hash
             };
-            
+
             function mapPatient(results) {
                 //prepare results to be presented in search table
                 var preparedResults = [];
                 for(var patientIndex in results) {
                     var result = results[patientIndex];
                     var patient = patientMapper.map(result);
-                    
+
                     preparedResults.push(patient);
                 }
                 return preparedResults;
